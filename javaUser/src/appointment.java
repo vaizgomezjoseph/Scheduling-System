@@ -18,23 +18,28 @@ import java.text.SimpleDateFormat;
  * @author mac
  */
 public class appointment {
-    public void insertUpdateDeleteAppointment(char operation, String username, String hour, String minute, String date) throws SQLException{
+    public void insertUpdateDeleteAppointment(char operation, String username, String hour, String minute, Timestamp date){
         Connection con = MyConnection.getConnection();
         PreparedStatement ps;
-        String dateTime = date+" "+hour+":"+ minute;
-        
-        Timestamp aTime = convertStringToTimestamp(date);
+        String aDate = date+ " "+hour+":"+ minute;
+        Timestamp aTime = convertStringToTimestamp(aDate);
         //i for insert
         if(operation == 'i'){
+            try{
             ps = con.prepareStatement("INSERT INTO Appointments(user, apptDate) VALUES (?,?)");
+            ps.setString(1, username);
+            ps.setTimestamp(2, aTime);
+            }
+            catch(SQLException ex){
+            }
         }
     }
     
-    public static Timestamp convertStringToTimestamp(String str_date) {
+    public static Timestamp convertStringToTimestamp(String aDate) {
     Timestamp tStamp = null;
     try {
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
-    Date parsedDate = (Date) dateFormat.parse(str_date);
+    Date parsedDate = (Date) dateFormat.parse(aDate);
     tStamp = new java.sql.Timestamp(parsedDate.getTime());
 } catch(Exception e) { //this generic but you can control another types of exception
     // look the origin of excption 
