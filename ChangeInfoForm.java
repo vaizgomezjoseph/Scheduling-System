@@ -1,4 +1,9 @@
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextField;
 
 /*
@@ -410,9 +415,17 @@ public class ChangeInfoForm extends javax.swing.JFrame {
         }
         else
         {
+            Connection con = MyConnection.getConnection();
+            PreparedStatement ps;
             String fn = jTextField_FirstName.getText();
             jLabel_FirstName.setText(fn);
-            /**@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DO DATABASE STUFF TO CHANGE FIRST NAME HERE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@**/
+            try {
+                //UPDATE user SET first_name = ''
+                ps = con.prepareStatement("UPDATE user SET first_name = 'fn'");
+            } catch (SQLException ex) {
+                Logger.getLogger(ChangeInfoForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         /**@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ DO DATABASE STUFF TO CHANGE FIRST NAME HERE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@**/
         }
     }//GEN-LAST:event_jButton_FirstNameActionPerformed
 
