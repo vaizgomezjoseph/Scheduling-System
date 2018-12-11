@@ -52,9 +52,9 @@ public class MainForm extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem_MakeAppointment = new javax.swing.JMenuItem();
+        jMenuItem_ChangeAppointment = new javax.swing.JMenuItem();
+        jMenuItem_CancelAppointment = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem_ChangeUsernamePassword = new javax.swing.JMenuItem();
         jMenuItem_ModAcctInfo = new javax.swing.JMenuItem();
@@ -220,19 +220,29 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenu1.setText("Appointments");
 
-        jMenuItem4.setText("Make Appointment");
-        jMenu1.add(jMenuItem4);
-
-        jMenuItem5.setText("Change Appointment");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_MakeAppointment.setText("Make Appointment");
+        jMenuItem_MakeAppointment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMenuItem_MakeAppointmentActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMenu1.add(jMenuItem_MakeAppointment);
 
-        jMenuItem6.setText("Cancel Appointment");
-        jMenu1.add(jMenuItem6);
+        jMenuItem_ChangeAppointment.setText("Change Appointment");
+        jMenuItem_ChangeAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ChangeAppointmentActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem_ChangeAppointment);
+
+        jMenuItem_CancelAppointment.setText("Cancel Appointment");
+        jMenuItem_CancelAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_CancelAppointmentActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem_CancelAppointment);
 
         jMenuBar1.add(jMenu1);
 
@@ -272,9 +282,13 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jMenuItem_ChangeAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ChangeAppointmentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+        ChangeAppointmentForm caf = new ChangeAppointmentForm();
+        caf.setVisible(true);
+        caf.pack();
+        caf.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItem_ChangeAppointmentActionPerformed
 
     private void jMenuItem_ChangeUsernamePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ChangeUsernamePasswordActionPerformed
         // TODO add your handling code here:
@@ -306,6 +320,23 @@ public class MainForm extends javax.swing.JFrame {
         ChangeInfoForm.jLabel_Phone.setText("XXXXXXXXXXXXXX");
         ChangeInfoForm.jLabel_Bday.setText("XXXXXXXXXX-XX-XXXX");
     }//GEN-LAST:event_jMenuItem_ModAcctInfoActionPerformed
+
+    private void jMenuItem_CancelAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_CancelAppointmentActionPerformed
+        // TODO add your handling code here:
+        CancelAppointmentForm caf_0 = new CancelAppointmentForm();
+        caf_0.setVisible(true);
+        caf_0.pack();
+        caf_0.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItem_CancelAppointmentActionPerformed
+
+    private void jMenuItem_MakeAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_MakeAppointmentActionPerformed
+        // TODO add your handling code here:
+        MakeAppointmentForm maf = new MakeAppointmentForm();
+        maf.setVisible(true);
+        maf.pack();
+        maf.setLocationRelativeTo(null);
+        //this.dispose();
+    }//GEN-LAST:event_jMenuItem_MakeAppointmentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,10 +390,10 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem_CancelAppointment;
+    private javax.swing.JMenuItem jMenuItem_ChangeAppointment;
     private javax.swing.JMenuItem jMenuItem_ChangeUsernamePassword;
+    private javax.swing.JMenuItem jMenuItem_MakeAppointment;
     private javax.swing.JMenuItem jMenuItem_ModAcctInfo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
