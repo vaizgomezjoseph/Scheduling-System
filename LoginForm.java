@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -273,11 +274,11 @@ public class LoginForm extends javax.swing.JFrame {
         {
             Connection con = MyConnection.getConnection();
             PreparedStatement ps;
-            
-            try{
-                ps = con.prepareStatement("SELECT * FROM user WHERE username = ? AND password = ?");
+            System.out.println(con);
+            try {
+                ps = con.prepareStatement("SELECT * FROM `user` WHERE username = ? AND password = ?");
                 ps.setString(1, jTextField_Username.getText());
-                ps.setString(2, String.valueOf(jPasswordField1.getPassword()));
+                ps.setString(2,String.valueOf(jPasswordField1.getPassword()));
                 
                 ResultSet rs = ps.executeQuery();
                 
@@ -290,6 +291,29 @@ public class LoginForm extends javax.swing.JFrame {
                     mf.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     MainForm.jLabel_Username.setText("Welcome<"+jTextField_Username.getText()+">");
                     this.dispose();
+                    
+                }else{
+                    System.out.println("NO");
+                }
+                        } catch (SQLException ex) {
+                Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try{
+                ps = con.prepareStatement("SELECT * FROM user WHERE username = ? AND password = ?");
+                ps.setString(1, jTextField_Username.getText());
+                ps.setString(2, String.valueOf(jPasswordField1.getPassword()));
+                
+                ResultSet rs = ps.executeQuery();
+                
+                if(rs.next())
+                {
+                    /**MainForm mf = new MainForm();
+                    mf.setVisible(true);
+                    mf.pack();
+                    mf.setLocationRelativeTo(null);
+                    mf.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    MainForm.jLabel_Username.setText("Welcome<"+jTextField_Username.getText()+">");
+                    this.dispose();*/
                 }
                 else
                 {
@@ -325,22 +349,29 @@ public class LoginForm extends javax.swing.JFrame {
         }
         else
         {
-            /**THIS CODE SHOULD NOT BE INCLUDED IN THE FINAL VERSION, I'M TRYING TO AVOID THE DATABASE FOR NOW**/
-            MainForm mf = new MainForm();
-            mf.setVisible(true);
-            mf.pack();
-            mf.setLocationRelativeTo(null);
-            mf.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            MainForm.jLabel_Username.setText(jTextField_NewUsername.getText());
-            this.dispose();
-            /**THIS CODE SHOULD NOT BE INCLUDED IN THE FINAL VERSION, I'M TRYING TO AVOID THE DATABASE FOR NOW**/
-            
-            /**THIS IS THE FINAL CODE THAT SHOULD BE USED IN THE FINAL VERSION**/
-            /*
+            String newUser = jTextField_NewUsername.getText();
+            String newPass = String.valueOf(jNewPasswordField.getPassword());
             Connection con = MyConnection.getConnection();
             PreparedStatement ps;
             
-            try{
+            try {
+                ps = con.prepareStatement("INSERT INTO user(username,password,first_name,last_name,sex,address,phone,birthday) VALUES (?,?,?,?,?,?,?,?)");
+                ps.setString(1, newUser);
+                ps.setString(2, newPass);
+                ps.setString(3, "");
+                ps.setString(4, "");
+                ps.setString(5, "");
+                ps.setString(6, "");
+                ps.setString(7, "");
+                ps.setString(8, "2000/01/01");
+                if(ps.executeUpdate() > 0){
+                    JOptionPane.showMessageDialog(null, "New Account Added");
+                }
+                /**THIS IS THE FINAL CODE THAT SHOULD BE USED IN THE FINAL VERSION**/
+                /*
+                
+                
+                try{
                 ps = con.prepareStatement("SELECT * FROM user WHERE username = ? AND password = ?");
                 ps.setString(1, jTextField_Username.getText());
                 ps.setString(2, String.valueOf(jPasswordField1.getPassword()));
@@ -349,23 +380,27 @@ public class LoginForm extends javax.swing.JFrame {
                 
                 if(rs.next())
                 {
-                    MainForm mf = new MainForm();
-                    mf.setVisible(true);
-                    mf.pack();
-                    mf.setLocationRelativeTo(null);
-                    mf.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    MainForm.jLabel_Username.setText("Welcome<"+jTextField_Username.getText()+">");
-                    this.dispose();
+                MainForm mf = new MainForm();
+                mf.setVisible(true);
+                mf.pack();
+                mf.setLocationRelativeTo(null);
+                mf.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                MainForm.jLabel_Username.setText("Welcome<"+jTextField_Username.getText()+">");
+                this.dispose();
                 }
                 else
                 {
-                    System.out.println("NO");
+                System.out.println("NO");
                 }
-            } catch (SQLException ex){
+                } catch (SQLException ex){
+                Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                */
+                /**THIS IS THE FINAL CODE THAT SHOULD BE USED IN THE FINAL VERSION**/
+            } catch (SQLException ex) {
                 Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
             }
-            */
-            /**THIS IS THE FINAL CODE THAT SHOULD BE USED IN THE FINAL VERSION**/
+
         }
     }//GEN-LAST:event_jButton_CreateAccountActionPerformed
 
