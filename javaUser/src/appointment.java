@@ -18,15 +18,6 @@ import java.text.SimpleDateFormat;
  * @author mac
  */
 public class appointment {
-
-    /**
-     *
-     * @param operation
-     * @param username
-     * @param hour
-     * @param minute
-     * @param date
-     */
     public void insertUpdateDeleteAppointment(char operation, String username, String hour, String minute, Timestamp date){
         Connection con = MyConnection.getConnection();
         PreparedStatement ps;
@@ -44,11 +35,6 @@ public class appointment {
         }
     }
     
-    /**
-     *
-     * @param aDate
-     * @return
-     */
     public static Timestamp convertStringToTimestamp(String aDate) {
     Timestamp tStamp = null;
     try {

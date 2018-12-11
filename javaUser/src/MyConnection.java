@@ -2,16 +2,9 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- *
- * @author bigjo
- */
+
 public class MyConnection {
     
-    /**
-     *
-     * @return
-     */
     public static Connection getConnection()
     {
         Connection con = null;
